@@ -1,0 +1,18 @@
+= Cheatsheets
+
+[[Mock]]
+== Mock
+
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[code]]`code`|`Number (Integer)`|-
+|[[createdBy]]`createdBy`|`String`|-
+|[[isActive]]`isActive`|`Boolean`|-
+|[[response]]`response`|`Json object`|-
+|[[updatedBy]]`updatedBy`|`String`|-
+|[[url]]`url`|`String`|-
+|===
+
