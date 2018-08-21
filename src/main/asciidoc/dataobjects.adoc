@@ -8,10 +8,11 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[code]]`code`|`Number (Integer)`|-
 |[[createdBy]]`createdBy`|`String`|-
+|[[headers]]`headers`|`String`|-
 |[[isActive]]`isActive`|`Boolean`|-
 |[[response]]`response`|`Json object`|-
+|[[statusCode]]`statusCode`|`Number (Integer)`|-
 |[[updatedBy]]`updatedBy`|`String`|-
 |[[url]]`url`|`String`|-
 |===

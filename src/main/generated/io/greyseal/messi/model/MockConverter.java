@@ -17,53 +17,67 @@
 package io.greyseal.messi.model;
 
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.json.JsonArray;
 
 /**
  * Converter for {@link io.greyseal.messi.model.Mock}.
- * <p>
+ *
  * NOTE: This class has been automatically generated from the {@link io.greyseal.messi.model.Mock} original class using Vert.x codegen.
  */
 public class MockConverter {
 
-    public static void fromJson(JsonObject json, Mock obj) {
-        if (json.getValue("statusCode") instanceof Number) {
-            obj.setStatusCode(((Number) json.getValue("statusCode")).intValue());
-        }
-        if (json.getValue("createdBy") instanceof String) {
-            obj.setCreatedBy((String) json.getValue("createdBy"));
-        }
-        if (json.getValue("isActive") instanceof Boolean) {
-            obj.setIsActive((Boolean) json.getValue("isActive"));
-        }
-        if (json.getValue("response") instanceof JsonObject) {
-            obj.setResponse(((JsonObject) json.getValue("response")).copy());
-        }
-        if (json.getValue("updatedBy") instanceof String) {
-            obj.setUpdatedBy((String) json.getValue("updatedBy"));
-        }
-        if (json.getValue("url") instanceof String) {
-            obj.setUrl((String) json.getValue("url"));
-        }
+  public static void fromJson(JsonObject json, Mock obj) {
+    if (json.getValue("createdBy") instanceof String) {
+      obj.setCreatedBy((String)json.getValue("createdBy"));
     }
+    if (json.getValue("headers") instanceof JsonObject) {
+      java.util.Map<String, java.lang.String> map = new java.util.LinkedHashMap<>();
+      json.getJsonObject("headers").forEach(entry -> {
+        if (entry.getValue() instanceof String)
+          map.put(entry.getKey(), (String)entry.getValue());
+      });
+      obj.setHeaders(map);
+    }
+    if (json.getValue("isActive") instanceof Boolean) {
+      obj.setIsActive((Boolean)json.getValue("isActive"));
+    }
+    if (json.getValue("response") instanceof JsonObject) {
+      obj.setResponse(((JsonObject)json.getValue("response")).copy());
+    }
+    if (json.getValue("statusCode") instanceof Number) {
+      obj.setStatusCode(((Number)json.getValue("statusCode")).intValue());
+    }
+    if (json.getValue("updatedBy") instanceof String) {
+      obj.setUpdatedBy((String)json.getValue("updatedBy"));
+    }
+    if (json.getValue("url") instanceof String) {
+      obj.setUrl((String)json.getValue("url"));
+    }
+  }
 
-    public static void toJson(Mock obj, JsonObject json) {
-        if (obj.getStatusCode() != null) {
-            json.put("statusCode", obj.getStatusCode());
-        }
-        if (obj.getCreatedBy() != null) {
-            json.put("createdBy", obj.getCreatedBy());
-        }
-        if (obj.getIsActive() != null) {
-            json.put("isActive", obj.getIsActive());
-        }
-        if (obj.getResponse() != null) {
-            json.put("response", obj.getResponse());
-        }
-        if (obj.getUpdatedBy() != null) {
-            json.put("updatedBy", obj.getUpdatedBy());
-        }
-        if (obj.getUrl() != null) {
-            json.put("url", obj.getUrl());
-        }
+  public static void toJson(Mock obj, JsonObject json) {
+    if (obj.getCreatedBy() != null) {
+      json.put("createdBy", obj.getCreatedBy());
     }
+    if (obj.getHeaders() != null) {
+      JsonObject map = new JsonObject();
+      obj.getHeaders().forEach((key,value) -> map.put(key, value));
+      json.put("headers", map);
+    }
+    if (obj.getIsActive() != null) {
+      json.put("isActive", obj.getIsActive());
+    }
+    if (obj.getResponse() != null) {
+      json.put("response", obj.getResponse());
+    }
+    if (obj.getStatusCode() != null) {
+      json.put("statusCode", obj.getStatusCode());
+    }
+    if (obj.getUpdatedBy() != null) {
+      json.put("updatedBy", obj.getUpdatedBy());
+    }
+    if (obj.getUrl() != null) {
+      json.put("url", obj.getUrl());
+    }
+  }
 }
