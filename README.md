@@ -52,10 +52,14 @@ Currently added support to add a mock and then fetch it to consume. To run/debug
  ```
 {
   "response": {
-    "firstName": "Not Known",
-    "lastName": "Not Known"
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
-  "statusCode": 500,
+  "statusCode": 200,
+  "headers":{
+  	"Content-Type": "application/json",
+  	"X-Id": "Id"
+  },
   "url": "/cerberus/user/create"
 }
  ```
