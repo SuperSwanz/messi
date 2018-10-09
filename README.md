@@ -1,6 +1,15 @@
 # messi
 Sample mock server to mock APIs without writing any mock code manually. Built with vertx web to showcase the usage of [vertx-boot]
 (https://github.com/greyseal/vertx-boot) library. 
+```diff
+- This library is mandatory. You must download vertx-boot before running messi.
+- Your directory structure should be like: 
+/workspace
+  /messi
+    ...
+  /vertx-boot
+    ...
+```
 
 ## Getting Started
 
