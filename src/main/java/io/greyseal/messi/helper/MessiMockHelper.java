@@ -18,6 +18,7 @@ public enum MessiMockHelper {
         mock.setCreatedDate(new Date());
         mock.setUpdatedDate(new Date());
         mock.setIsActive(true);
+        mock.setHttpMethod(mock.getHttpMethod().toUpperCase());
         final JsonObject query = mock.toJson();
         return rxDBService.rxInsertOne(Mock.DB_TABLE, query).map(result -> {
             query.put("_id", result);

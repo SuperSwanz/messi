@@ -8,11 +8,21 @@ import java.util.Map;
 @DataObject(generateConverter = true)
 public class Mock extends Base {
 
-    public static final String DB_TABLE = "mock_api";
+    public static final String DB_TABLE = "api_mocks";
     private static final long serialVersionUID = 7012872680076147456L;
 
     private String url;
+    private String httpMethod;
     private Integer statusCode;
+
+    public String getHttpMethod() {
+        return httpMethod;
+    }
+
+    public void setHttpMethod(String httpMethod) {
+        this.httpMethod = httpMethod;
+    }
+
     private JsonObject response;
     private Map<String, String> headers;
 

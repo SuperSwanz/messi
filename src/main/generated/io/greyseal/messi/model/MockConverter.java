@@ -38,6 +38,9 @@ public class MockConverter {
       });
       obj.setHeaders(map);
     }
+    if (json.getValue("httpMethod") instanceof String) {
+      obj.setHttpMethod((String)json.getValue("httpMethod"));
+    }
     if (json.getValue("isActive") instanceof Boolean) {
       obj.setIsActive((Boolean)json.getValue("isActive"));
     }
@@ -63,6 +66,9 @@ public class MockConverter {
       JsonObject map = new JsonObject();
       obj.getHeaders().forEach((key,value) -> map.put(key, value));
       json.put("headers", map);
+    }
+    if (obj.getHttpMethod() != null) {
+      json.put("httpMethod", obj.getHttpMethod());
     }
     if (obj.getIsActive() != null) {
       json.put("isActive", obj.getIsActive());
