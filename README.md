@@ -31,20 +31,31 @@ This sample application make use of [Vertx-Boot](https://github.com/greyseal/ver
 
 ## Running the app
 
-For running the app, (IDE used here is IntelliJ)
+For running the app, (IDE used here is **IntelliJ**)
 - Open **appConfig.json** file and set the "http_server_port" as per your choice. Set the **mongo** details as well.
 - Once, changes are done in **appConfig.json**, add/edit Run/Debug Configurations for the project("messi") and set:
   * **Main class**: com.greyseal.vertx.boot.AppLauncher
   * **VM options**: -Dlogback.configurationFile=file:../messi/src/main/resources/logback.xml
   * **Program arguments**: run com.greyseal.vertx.boot.verticle.MainVerticle -conf ../messi/src/main/resources/appConfig.json 
-  * **Environment variables**: ENV=dev 
+  * **Use classpath of module**: messi_main
+  * **JRE**: 1.8
+  * **Environment variables**: ENV=dev
  <br /><br /> 
 
-After setting the variables, Run/Debug the project. If app starts successfully, then try <br /><br /> 
+After setting the variables, Run/Debug the project. If app starts successfully, then try <br /><br />
+```
+curl -X GET \
+  http://localhost:8080/messi/ping \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'trace-id: c1d887063c3e492b9951b0479fadddda'
+```
+<br />
+or in PostMan, try <br />
 **Type:** *GET http://localhost:8080/messi/ping* <br />
 **Headers:** *Content-Type: application/json*;  *Trace-Id: c1d887063c3e492b9951b0479fadddda* <br />
 
-Response<br />
+Response would be: <br />
 ```
 {
     "status": "OK"
@@ -53,60 +64,67 @@ Response<br />
 That's it.
 
 ## Messi usage
-Currently added support to add a mock and then fetch it to consume. To run/debug...<br  /><br  />
+Currently added support to add a mock and then fetch it to consume. Run/debug the application...<br  /><br  />
 * To create a Mock **MockCreate** <br /><br />
 **Type:** *POST http://localhost:8080/messi/mock/create* <br />
 **Headers:** *Content-Type: application/json*;  *Trace-Id: c1d887063c3e492b9951b0479faddddu* <br />
 **Request body:**
  ```
+ {
+  "response": {
+    "firstName": "First Name",
+    "lastName": "Last Name"
+  },
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Id": "Id"
+  },
+  "statusCode": 200,
+  "url": "/corona/user/get/123",
+  "httpMethod": "GET"
+}
+ ```
+ where, <br />
+ **response** is the response of the API to mock. <br />
+ **headers** are the response headers of the API to mock. <br />
+ **statusCode** is the statusCode for which Mock should return the above response. <br />
+ **url** is the URL used to fetch the Mock API result. <br />
+ **httpMethod** is the http method for which Mock should return the above response. <br /> <br />
+ **Response:**
+ ```
 {
+  "createdBy": "saurabh",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Id": "Id"
+  },
+  "httpMethod": "GET",
+  "isActive": true,
   "response": {
     "firstName": "First Name",
     "lastName": "Last Name"
   },
   "statusCode": 200,
-  "headers":{
-  	"Content-Type": "application/json",
-  	"X-Id": "Id"
-  },
-  "url": "/cerberus/user/create"
-}
- ```
- where, <br />
- **response** is the response of the API to mock. <br />
- **statusCode** is the statusCode for which Mock should return the above response. <br />
- **url** is the URL used to fetch the Mock API result. <br /> <br />
- **Response:**
- ```
-{
-    "statusCode": 500,
-    "createdBy": "saurabh",
-    "isActive": true,
-    "response": {
-        "firstName": "Not Known",
-        "lastName": "Not Known"
-    },
-    "updatedBy": "saurabh",
-    "url": "/corona/user/create",
-    "_id": "5b76d2c2e9738f841076749e"
+  "updatedBy": "saurabh",
+  "url": "/corona/user/get/123",
+  "_id": "5bc62bbcbda0fc88432db0dc"
 }
  ```
 <br /> <br />
 * To fetch the mock result for an API **FetchMock** <br /><br />
-**Type:** *GET {BASE_URL}/{MOCK_API_URL}* <br />
+**Type:** *{HTTP_METHOD} {BASE_URL}/{MOCK_API_URL}* <br />
 where, <br />
+  1. **HTTP_METHOD** = Http method [Get, Post, Put, Delete etc]. <br />
   1. **BASE_URL** = http://localhost:8080/messi/mock/server This is constant.<br />
-  2. **MOCK_API_URL**=corona/user/create?statusCode={status_code} This is the dynamic URL or URL for which mock result is required. This is the URL which we have passed while creating the Mock #**MockCreate**  <br />
-  3. **status_code** = Http Status code for which Mock result has to be prepared. Default is 200.
+  2. **MOCK_API_URL**=corona/user/get/123?statusCode={**status_code**} This is the dynamic URL or URL for which mock result is required. This is the URL which we have passed while creating the Mock #**MockCreate**  <br />
+  3. **status_code** = Http Status code for which Mock result has to be prepared. Default is 200.<br />
   
   **Headers:** *Content-Type: application/json*;  *Trace-Id: c1d887063c3e492b9951b0479faddddu* <br />
  **Response:**
  ```
 {
-    "response": {
-        "firstName": "Not Known",
-        "lastName": "Not Known"
-    }
+  "firstName": "First Name",
+  "lastName": "Last Name"
 }
  ```
 ## Built With
