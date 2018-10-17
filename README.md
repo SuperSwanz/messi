@@ -39,12 +39,12 @@ For running the app, (IDE used here is **IntelliJ**)
   * **Program arguments**: run com.greyseal.vertx.boot.verticle.MainVerticle -conf ../messi/src/main/resources/appConfig.json 
   * **Use classpath of module**: messi_main
   * **JRE**: 1.8
-  * **Environment variables**: ENV=dev
+  * **Environment variables**: ENV=dev (default is dev)
  <br /><br />
  ![alt text](https://github.com/greyseal/messi/blob/master/src/main/resources/messi.png) <br />
  
-
-After setting the variables, Run/Debug the project. If app starts successfully, then try <br /><br />
+In terminal/command prompt, do `gradle clean build` or `./gradlew clean build`  <br />
+Now Run/Debug the project. If app starts successfully, then try <br /><br />
 ```
 curl -X GET \
   http://localhost:8080/messi/ping \
@@ -130,6 +130,12 @@ where, <br />
   "lastName": "Last Name"
 }
  ```
+ 
+## To run as server
+In terminal/command prompt, go to messi directory (cd messi) and then type  
+1. `gradle clean build shadowJar` or `./gradlew clean build shadowJar`
+2. java -jar build/libs/messi-0.0.1-fat.jar -conf ../messi/src/main/resources/appConfig.json -Dlogback.configurationFile=file:../messi/src/main/resources/logback.xml
+ 
 ## Built With
 
 * [Vertx](http://vertx.io/) - The web framework used
