@@ -40,7 +40,9 @@ For running the app, (IDE used here is **IntelliJ**)
   * **Use classpath of module**: messi_main
   * **JRE**: 1.8
   * **Environment variables**: ENV=dev
- <br /><br /> 
+ <br /><br />
+ ![alt text](https://github.com/greyseal/messi/blob/master/src/main/resources/messi.png) <br />
+ 
 
 After setting the variables, Run/Debug the project. If app starts successfully, then try <br /><br />
 ```
@@ -52,8 +54,9 @@ curl -X GET \
 ```
 <br />
 or in PostMan, try <br />
-**Type:** *GET http://localhost:8080/messi/ping* <br />
-**Headers:** *Content-Type: application/json*;  *Trace-Id: c1d887063c3e492b9951b0479fadddda* <br />
+
+**Type:**  *GET http://localhost:8080/messi/ping* <br />
+**Headers:**  *Content-Type: application/json*;  *Trace-Id: c1d887063c3e492b9951b0479fadddda* <br />
 
 Response would be: <br />
 ```
