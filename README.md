@@ -132,7 +132,7 @@ where, <br />
  ```
  
 ## To run as server
-In terminal/command prompt, go to messi directory (cd messi) and then type  
+Make sure you have configured **Mongo** as stated earlier. In terminal/command prompt, go to messi directory (cd messi) and then type 
 1. `gradle clean build` or `./gradlew clean build`
 2. java -jar build/libs/messi-0.0.1-fat.jar -conf ../messi/src/main/resources/appConfig.json -Dlogback.configurationFile=file:../messi/src/main/resources/logback.xml
  
